@@ -6,7 +6,7 @@
 const int ledPins[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; // Array of LED pins
 const int controlLED = 13; // Control LED pin
 const int numLeds = sizeof(ledPins) / sizeof(ledPins[0]); // Number of LEDs
-
+const int pot = A1; // Potentiometer pin
 Bounce2::Button button = Bounce2::Button(); // INSTANTIATE A Bounce2::Button OBJECT
 
 
@@ -55,7 +55,12 @@ void fce3() {
 }
 
 void fce4() {
+  int potValue = analogRead(pot); // Range: 0 - 1023
+  int numLedsOn = map(potValue, 0, 1023, 0, 10);
 
+  for (int i = 0; i < 10; i++) {
+    digitalWrite(ledPins[i], i < numLedsOn ? HIGH : LOW);
+  }
 }
 
 
