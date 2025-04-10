@@ -49,12 +49,15 @@ void fce2() {
 
 void fce3() {
   static unsigned long lastMillis = 0; // Variable to store the last time the LED was toggled
-  const int fastBlinkInterval = 100; // Interval for faster blinking in milliseconds
+  const int blinkInterval = 100; // Interval for faster blinking in milliseconds
   static bool ledState = false; // Variable to store the LED state
 
-  if (millis() - lastMillis >= fastBlinkInterval) {
+  if (millis() - lastMillis >= blinkInterval) {
     ledState = !ledState; // Toggle the LED state
-    digitalWrite(controlLED, ledState); // Set the LED state
+    for (int i = 0; i < 10; i++)
+    {
+      digitalWrite(ledPins[i], ledState); // Set the LED state
+    }
     lastMillis = millis(); // Update the lastMillis variable
   }
 }
