@@ -23,22 +23,27 @@ void setup() {
 }
 
 void fce1() {
-  static unsigned long lastMillis = 0; // Variable to store the last time the LEDs were updated
-  if (millis() - lastMillis > 1000) { // Wait for 100 milliseconds
-    Serial.println("second passed"); // Print the LED number to the serial monitor
-    lastMillis = millis();
-  } // Update the lastMillis variable
+  static unsigned long lastMillis = 0; // Variable to store the last time the LED was toggled
+  for (int i = 0; i < 10;)
+  {
+    digitalWrite(ledPins[i], HIGH); // Turn on the LED
+    if (lastMillis >= 100) {
+      digitalWrite(ledPins[i], LOW); // Turn off the LED
+      i++;
+    }
+  }
+  
 }
 
 void fce2() {
-  static bool ledState = false; // Variable to store the LED state
   static unsigned long lastMillis = 0; // Variable to store the last time the LED was toggled
-  const int blinkInterval = 500; // Interval for blinking in milliseconds
-
-  if (millis() - lastMillis >= blinkInterval) {
-    ledState = !ledState; // Toggle the LED state
-    digitalWrite(controlLED, ledState); // Set the LED state
-    lastMillis = millis(); // Update the lastMillis variable
+  for (int i = 10; i > 0;)
+  {
+    digitalWrite(ledPins[i], HIGH); // Turn on the LED
+    if (lastMillis >= 100) {
+      digitalWrite(ledPins[i], LOW); // Turn off the LED
+      i--;
+    }
   }
 }
 
