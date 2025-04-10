@@ -64,7 +64,7 @@ void fce3() {
 
 void fce4() {
   int potValue = analogRead(pot); // Range: 0 - 1023
-  int numLedsOn = map(potValue, 0, 1023, 0, 10);
+  int numLedsOn = map(potValue, 0, 1023, 1, 10);
 
   for (int i = 0; i < 10; i++) {
     digitalWrite(ledPins[i], i < numLedsOn ? HIGH : LOW);
